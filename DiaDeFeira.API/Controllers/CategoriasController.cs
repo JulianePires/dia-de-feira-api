@@ -14,12 +14,12 @@ namespace DiaDeFeira.API.Controllers
     public class CategoriasController : ControllerBase
     {
         private readonly ICategoriasService _categoriasService;
-        private readonly CategoriaCriacaoValidator _validator;
+        private readonly CategoriaRequestValidator _validator;
 
         public CategoriasController(ICategoriasService categoriasService)
         {
             _categoriasService = categoriasService;
-            _validator = new CategoriaCriacaoValidator();
+            _validator = new CategoriaRequestValidator();
         }
 
         [HttpGet]
@@ -53,7 +53,7 @@ namespace DiaDeFeira.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ErrorOr<IActionResult>> CriaCategoria(CategoriaCriacaoDto categoriaCriacao)
+        public async Task<ErrorOr<IActionResult>> CriaCategoria(CategoriaRequestDto categoriaCriacao)
         {
             var validator = await _validator.ValidateAsync(categoriaCriacao);
 

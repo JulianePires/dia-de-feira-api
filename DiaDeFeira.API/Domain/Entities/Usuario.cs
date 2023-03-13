@@ -3,9 +3,9 @@ using MongoDB.Bson;
 
 namespace DiaDeFeira.API.Domain.Entities
 {
-    public class Lista
+    public class Usuario
     {
-        public Lista()
+        public Usuario()
         {
             CreatedAt = DateTime.Now;
         }
@@ -13,12 +13,9 @@ namespace DiaDeFeira.API.Domain.Entities
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
         [BsonElement("Nome")]
-        public string NomeLista { get; set; }
-        [BsonElement("Itens")]
-        public List<string> ItensId { get; set; } = new();
-        [BsonElement("ValorTotal")]
-        public double Total { get; set; } = 0.0;
-        public bool Finalizada { get; set; } = false;
+        public string NomeUsuario { get; set; }
+        public string Email { get; set; }
+        public string Senha { get; set; }
         public DateTime CreatedAt { get; set; }
     }
 }

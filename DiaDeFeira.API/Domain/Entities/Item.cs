@@ -1,5 +1,4 @@
-﻿using ErrorOr;
-using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 
 namespace DiaDeFeira.API.Domain.Entities
