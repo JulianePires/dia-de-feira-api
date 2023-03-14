@@ -8,7 +8,6 @@ namespace DiaDeFeira.API.Infraestructure.Repositories.Base
         public IMongoClient Client;
         public IMongoCollection<Categoria> Categorias;
         public IMongoCollection<Produto> Produtos;
-        public IMongoCollection<Item> Itens;
         public IMongoCollection<Lista> Listas;
         public IMongoCollection<Usuario> Usuarios;
         public IMongoCollection<Historico> Historicos;
@@ -22,8 +21,6 @@ namespace DiaDeFeira.API.Infraestructure.Repositories.Base
             Categorias = database.GetCollection<Categoria>("categorias");
 
             Produtos = database.GetCollection<Produto>("produtos");
-
-            Itens = database.GetCollection<Item>("itens");
 
             Listas = database.GetCollection<Lista>("listas");
 

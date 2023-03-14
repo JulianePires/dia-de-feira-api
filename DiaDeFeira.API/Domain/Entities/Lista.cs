@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using DiaDeFeira.API.Domain.Dtos;
+using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 
 namespace DiaDeFeira.API.Domain.Entities
@@ -14,8 +15,7 @@ namespace DiaDeFeira.API.Domain.Entities
         public string? Id { get; set; }
         [BsonElement("Nome")]
         public string NomeLista { get; set; }
-        [BsonElement("Itens")]
-        public List<string> ItensId { get; set; } = new();
+        public List<ItemDto> Itens { get; set; } = new();
         [BsonElement("ValorTotal")]
         public double Total { get; set; } = 0.0;
         public bool Finalizada { get; set; } = false;
