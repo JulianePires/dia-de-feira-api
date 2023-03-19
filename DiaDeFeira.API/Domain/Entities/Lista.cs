@@ -4,15 +4,13 @@ using MongoDB.Bson;
 
 namespace DiaDeFeira.API.Domain.Entities
 {
-    public class Lista
+    public class Lista : BaseEntity
     {
         public Lista()
         {
             CreatedAt = DateTime.Now;
+            Itens.Select(x => x.Preco * x.Quantidade);
         }
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string? Id { get; set; }
         [BsonElement("Nome")]
         public string NomeLista { get; set; }
         public List<ItemDto> Itens { get; set; } = new();

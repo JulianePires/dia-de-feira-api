@@ -3,15 +3,12 @@ using MongoDB.Bson;
 
 namespace DiaDeFeira.API.Domain.Entities
 {
-    public class Usuario
+    public class Usuario : BaseEntity
     {
         public Usuario()
         {
             CreatedAt = DateTime.Now;
         }
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string? Id { get; set; }
         [BsonElement("Nome")]
         public string NomeUsuario { get; set; }
         public string Email { get; set; }

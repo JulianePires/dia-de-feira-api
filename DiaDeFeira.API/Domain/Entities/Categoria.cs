@@ -3,15 +3,12 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace DiaDeFeira.API.Domain.Entities
 {
-    public class Categoria
+    public class Categoria : BaseEntity
     {
         public Categoria()
         {
             CreatedAt = DateTime.UtcNow;
         }
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string? Id { get; set; }
         [BsonElement("Nome")] public string NomeCategoria { get; set; }
         public DateTime CreatedAt { get; set; }
     }
