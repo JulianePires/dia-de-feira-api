@@ -4,8 +4,6 @@ using DiaDeFeira.API.Domain.Validations;
 using DiaDeFeira.API.Services.Interfaces;
 using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
-
 
 namespace DiaDeFeira.API.Controllers
 {
@@ -67,11 +65,11 @@ namespace DiaDeFeira.API.Controllers
                 NomeCategoria = categoriaCriacao.NomeCategoria
             };
 
-         
+
             await _categoriasService.CriaCategoria(novaCategoria);
 
             return CreatedAtAction(nameof(BuscaCategoriaPorNome),
-                new { nomeCategoria = categoriaCriacao.NomeCategoria }, 
+                new { nomeCategoria = categoriaCriacao.NomeCategoria },
                 novaCategoria);
         }
 
