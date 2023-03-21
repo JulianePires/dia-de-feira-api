@@ -6,6 +6,6 @@ namespace DiaDeFeira.API.Domain.Dtos
     {
         public string? NomeLista { get; set; }
         public List<ItemDto>? Itens { get; set; }
-        public bool Finalizada { get; set; }
+        public bool? Finalizada { get; set; }
     }
 }
