@@ -1,14 +1,23 @@
 {
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:12266",
+      "sslPort": 44303
+    }
+  },
   "profiles": {
     "DiaDeFeira.API": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:7282;http://localhost:5031",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "MONGODB_URI": "mongodb+srv://julianepires:Maracuja@0192@clusterdiadefeira.1eqqltq.mongodb.net/?retryWrites=true&w=majority"
       },
-      "applicationUrl": "https://localhost:7282;http://localhost:5031",
       "dotnetRunMessages": true
     },
     "IIS Express": {
@@ -18,15 +27,6 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
-    }
-  },
-  "$schema": "https://json.schemastore.org/launchsettings.json",
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:12266",
-      "sslPort": 44303
     }
   }
 }

@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace DiaDeFeira.API.Domain.Validations
 {
-    public class CategoriaCriacaoValidator : AbstractValidator<CategoriaCriacaoDto>
+    public class CategoriaRequestValidator : AbstractValidator<CategoriaRequestDto>
     {
-        public CategoriaCriacaoValidator()
+        public CategoriaRequestValidator()
         {
             RuleFor(x => x.NomeCategoria)
                 .NotEmpty()

@@ -23,3 +23,7 @@ app.MapControllers();
 
 app.Run();
 
+//TODO : Adicionar autenticação
+//TODO : Adicionar métodos de edição de Usuários
+//TODO : Realizar testes de unidade
+//TODO : Realizar testes de integração

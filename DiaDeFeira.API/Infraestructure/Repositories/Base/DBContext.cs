@@ -7,6 +7,10 @@ namespace DiaDeFeira.API.Infraestructure.Repositories.Base
     {
         public IMongoClient Client;
         public IMongoCollection<Categoria> Categorias;
+        public IMongoCollection<Produto> Produtos;
+        public IMongoCollection<Lista> Listas;
+        public IMongoCollection<Usuario> Usuarios;
+        public IMongoCollection<Historico> Historicos;
 
         public DBContext(IConfiguration configuration)
         {
@@ -15,6 +19,14 @@ namespace DiaDeFeira.API.Infraestructure.Repositories.Base
             var database = Client.GetDatabase(configuration["Database:Name"]);
 
             Categorias = database.GetCollection<Categoria>("categorias");
+
+            Produtos = database.GetCollection<Produto>("produtos");
+
+            Listas = database.GetCollection<Lista>("listas");
+
+            Usuarios = database.GetCollection<Usuario>("usuarios");
+
+            Historicos = database.GetCollection<Historico>("historicos");
         }
     }
 }
