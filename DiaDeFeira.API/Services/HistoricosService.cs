@@ -2,6 +2,7 @@
 using DiaDeFeira.API.Helpers;
 using DiaDeFeira.API.Infraestructure.Repositories.Base;
 using DiaDeFeira.API.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 
 namespace DiaDeFeira.API.Services
