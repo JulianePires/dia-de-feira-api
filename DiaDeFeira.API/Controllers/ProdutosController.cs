@@ -1,6 +1,7 @@
 ﻿using DiaDeFeira.API.Domain.Dtos;
 using DiaDeFeira.API.Domain.Entities;
 using DiaDeFeira.API.Domain.Validations;
+using DiaDeFeira.API.Services;
 using DiaDeFeira.API.Services.Interfaces;
 using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
@@ -37,7 +38,7 @@ namespace DiaDeFeira.API.Controllers
             return Ok(produto);
         }
 
-        [HttpGet("{nomeCategoria}")]
+        [HttpGet("{nomeProduto}")]
         public async Task<ActionResult<Produto>> BuscaProdutoPorNome(string nomeProduto)
         {
             var produto = await _produtosService.BuscaProdutoPorNome(nomeProduto);
@@ -51,18 +52,18 @@ namespace DiaDeFeira.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ErrorOr<IActionResult>> CriaProduto(ProdutoRequestDto produtoCriacao)
+        public async Task<IActionResult> CriaProduto(ProdutoRequestDto produtoCriacao)
         {
             var validator = await _validator.ValidateAsync(produtoCriacao);
 
             if (!validator.IsValid)
             {
-                return Error.Validation(validator.Errors.First().ErrorCode, validator.Errors.First().ErrorMessage);
+                return BadRequest(validator.Errors);
             }
 
             var novoProduto = new Produto()
             {
-                NomeProduto = produtoCriacao.NomeProduto,
+                NomeProduto = produtoCriacao.NomeProduto!,
                 IdCategoria = produtoCriacao.IdCategoria!
             };
 
@@ -72,5 +73,65 @@ namespace DiaDeFeira.API.Controllers
                 new { nomeProduto = produtoCriacao.NomeProduto },
                 novoProduto);
         }
+
+        [HttpDelete("{id:length(24)}")]
+        public async Task<IActionResult> RemoveProduto(string id)
+        {
+            var produto = await _produtosService.BuscaProduto(id);
+
+            if (produto is null)
+            {
+                return NotFound();
+            }
+
+            await _produtosService.RemoveProduto(id);
+
+            return NoContent();
+        }
+
+        [HttpPut("atualiza-categoria-produto/{id:length(24)}")]
+        public async Task<IActionResult> AtualizaCategoriaProduto(string id, ProdutoRequestDto atualizacaoProduto)
+        {
+            var produto = await _produtosService.BuscaProduto(id);
+
+            if (produto is null)
+            {
+                return NotFound();
+            }
+
+            var produtoAtualizado = new Produto()
+            {
+                Id = produto.Id,
+                NomeProduto = produto.NomeProduto,
+                IdCategoria = atualizacaoProduto.IdCategoria!
+            };
+
+            await _produtosService.AtualizaProduto(id, produtoAtualizado);
+
+            return NoContent();
+        }
+
+        [HttpPut("atualiza-nome-produto/{id:length(24)}")]
+        public async Task<IActionResult> AtualizaNomeProduto(string id, ProdutoRequestDto atualizacaoProduto)
+        {
+            var produto = await _produtosService.BuscaProduto(id);
+
+            if (produto is null)
+            {
+                return NotFound();
+            }
+
+            var produtoAtualizado = new Produto()
+            {
+                Id = produto.Id,
+                NomeProduto = atualizacaoProduto.NomeProduto!,
+                IdCategoria = produto.IdCategoria
+            };
+
+            await _produtosService.AtualizaProduto(id, produtoAtualizado);
+
+            return NoContent();
+        }
+
     }
 }
